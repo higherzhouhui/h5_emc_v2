@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'ld_number';  //重命名字体名
+  src: url('ld_number.ttf');  //引入字体
+  font-weight: normal;
+  font-style: normal;
+}

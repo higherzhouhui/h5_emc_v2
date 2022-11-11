@@ -1,0 +1,16 @@
+export const COMMON_HEADER = 'COMMON_HEADER';  //header
+export const COMMON_NAVIGATOR = 'COMMON_NAVIGATOR';  //Navigator
+export const COMMON_SUCCESS = 'COMMON_SUCCESS';  //Success
+export const COMMON_LOADING = 'COMMON_LOADING';  //loading
+export const COMMON_PUSH_KEEPALIVE = 'COMMON_PUSH_KEEPALIVE'; // 添加缓存
+export const COMMON_POP_KEEPALIVE = 'COMMON_POP_KEEPALIVE'; // 删除缓存
+export const COMMON_ROOT_KEEPALIVE = 'COMMON_ROOT_KEEPALIVE'; // 清除缓存
+export const COMMON_AT_NAME_KEEPALIVE = 'COMMON_AT_NAME_KEEPALIVE'; //跳到指定页面
+export const COMMON_PUSH_POP_ANIMATION = 'COMMON_PUSH_POP_ANIMATION'; //页面跳转动画
+export const COMMON_BACK_MARK = 'COMMON_BACK_MARK'; //点击了返回
+export const COMMON_AXIS = 'COMMON_AXIS'; // 时间轴
+export const WITHDRAW_SHOW_INDICATOR = 'WITHDRAW_SHOW_INDICATOR'; // 回到提取时，是否展示等待框
+export const GOLBLE='GOLBLE' //这是全局变量标识
+export const TARBAR='TARBAR' //这是全局变量标识
+export const COMMON_UNREAD='COMMON_UNREAD' //这是全局变量标识
+export const COMMON_MULTIDATA='COMMON_MULTIDATA' // 串关全局数据

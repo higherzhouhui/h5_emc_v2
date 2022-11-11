@@ -1,0 +1,22 @@
+[
+  {
+    "id": 0,
+    "info": "message info 1",
+    "done": false
+  },
+  {
+    "id": 1,
+    "info": "message info 2",
+    "done": true
+  },
+  {
+    "id": 2,
+    "info": "message info 3",
+    "done": false
+  },
+  {
+    "id": 3,
+    "info": "message info 4",
+    "done": true
+  }
+]

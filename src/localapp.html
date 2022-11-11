@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>EMC</title>
+    <!-- 基础设置 -->
+    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="icon" href="../static/images/favicon.ico" type="image/vnd.microsoft.icon">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="screen-orientation" content="portrait">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="format-detection" content="telephone=no" />
+    <!-- http -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="public">
+    <!-- 基础设置 -->
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="format-detection" content="telephone=no" />
+    <!-- http -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="public">
+    <!-- 手机设置 -->
+    <meta name="MobileOptimized" content="320">
+<!--     <meta name="apple-mobile-web-app-title" content="JG">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"> -->
+
+    <!-- 引入mint ui样式 -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css"> -->
+    <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KG1KcIyG5ES73eTsfRgUqu6rknVhEeRZ"></script> -->
+    <!-- <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=dcb0adf74065bd021da9db57f6e6c19b"></script> -->
+    <style>
+    #app{
+        overflow-y: scroll;
+    }
+   /* html,body{
+        height: 100%;
+    }*/
+</style>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+
+  <script>
+    // (function (doc, win) {
+    //   var docEl = doc.documentElement,
+    //     resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+    //     recalc = function () {
+    //       var clientWidth = docEl.clientWidth;
+    //       if (!clientWidth) return;
+    //       docEl.style.fontSize = 43 * (clientWidth / 320) + 'px';
+    //     };
+    //   // Abort if browser does not support addEventListener
+    //   if (!doc.addEventListener) return;
+    //   win.addEventListener(resizeEvt, recalc, false);
+    //   doc.addEventListener('DOMContentLoaded', recalc, false);
+    // })(document, window);
+
+  (function (factory) {
+    window.msw = typeof window.msw !== "undefined" ? window.msw : {};
+    factory(window.msw, window, document);
+  }
+(function (msw, win, doc, undefined) {
+    var designWidth = 750;
+    var rate = 1;
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in win ? 'orientationchange' : 'resize';
+    msw.util = typeof msw.util !== "undefined" ? msw.util : {};
+    var isPC = msw.util.isPC = function () {
+        //平台、设备和操作系统
+        var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        if (system.win || system.mac || system.xll) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    var initRem = msw.util.initRem = function () {
+        var clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        if (clientWidth > designWidth && isPC()) {
+            clientWidth = designWidth;
+        }
+        rate = clientWidth / designWidth * 100;
+        docEl.style.fontSize = rate + 'px';
+    };
+    var init1px = msw.util.init1px = function () {
+        if (isPC()) return;
+        if (win.devicePixelRatio && devicePixelRatio > 1) {
+            var testEle = doc.createElement('div');
+            testEle.style.border = '.5px solid transparent';
+            doc.body.appendChild(testEle);
+            if (testEle.offsetHeight == 1) {
+                doc.querySelector('html').classList.add('hairlines');
+            }
+            doc.body.removeChild(testEle);
+        }
+    };
+    var init = function () {
+        if (!doc.addEventListener) return;
+        doc.addEventListener('DOMContentLoaded', function () {
+            initRem();
+            init1px();
+            win.addEventListener(resizeEvt, initRem, false);
+        }, false);
+        initRem();
+        init1px();
+    };
+    init();
+    msw.util.rate = rate;
+    msw.util.designWidth = designWidth;
+}));
+  </script>
+
+</html>
